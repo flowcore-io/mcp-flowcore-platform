@@ -204,15 +204,15 @@ server.tool(
 if (values.apiKey) {
   server.tool(
     "ingest",
-    "Ingest events into an event type. This is useful for ingesting events into an event type, and then using the get_events tool to get the events for a specific time bucket. The events are stored in time buckets, and can be fetched by using the get_time_buckets tool. When you fetch events from a time bucket, you can use the cursor to paginate through the events. When ingesting events, you can ingest a single event or an array of events. The format of the event can be anything you want, as long as it's valid JSON. It will be the payload of the event.",
+    "Ingest events into an event type. This is useful for ingesting events into an event type, and then using the get_events tool to get the events for a specific time bucket. The events are stored in time buckets, and can be fetched by using the get_time_buckets tool. When you fetch events from a time bucket, you can use the cursor to paginate through the events. When ingesting events, you can ingest an array of events. The data you send should be in JSON format. It will be the payload of the event.",
     {
       tenant: z.string().describe("The tenant name to ingest events for"),
       dataCoreId: z.string().describe("The data core ID to ingest events for"),
       flowTypeName: z.string().describe("The flow type name to ingest events for"),
       eventTypeName: z.string().describe("The event type name to ingest events for"),
       events: z
-        .union([z.array(z.unknown()), z.unknown()])
-        .describe("The events to ingest in the format of an array of events or a single event"),
+        .array(z.any())
+        .describe("The events to ingest in the format of an array of events in JSON format"),
     },
     // biome-ignore lint/suspicious/noExplicitAny: <explanation>
     ingestHandler(values.apiKey as string) as any,

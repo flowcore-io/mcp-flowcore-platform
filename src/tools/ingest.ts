@@ -3,7 +3,7 @@ export type IngestInput = {
   dataCoreId: string
   flowTypeName: string
   eventTypeName: string
-  events: unknown[] | unknown
+  events: unknown[]
 }
 
 export const ingestHandler = (apiKey: string) => async ({
@@ -14,13 +14,7 @@ export const ingestHandler = (apiKey: string) => async ({
   events,
 }: IngestInput) => {
   try {
-    let type = "event"
-
-    if (Array.isArray(events)) {
-      type = "events"
-    }
-
-    const webhookUrl = `https://webhook.api.flowcore.io/${type}/${tenant}/${dataCoreId}/${flowTypeName}/${eventTypeName}`
+    const webhookUrl = `https://webhook.api.flowcore.io/events/${tenant}/${dataCoreId}/${flowTypeName}/${eventTypeName}`
 
     // Execute the command manually since it's a custom command
     const response = await fetch(webhookUrl, {
