@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/flowcore-io/mcp-flowcore-platform/compare/v1.0.0...v1.0.1) (2025-03-12)
+
+
+### Bug Fixes
+
+* **ci:** :bug: Switch from bun publish to npm publish in workflow ([009e89d](https://github.com/flowcore-io/mcp-flowcore-platform/commit/009e89df8a92999078e2b1ff0220e1d169c5b269))
+
 ## 1.0.0 (2025-03-12)
 
 
