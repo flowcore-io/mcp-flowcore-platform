@@ -15,7 +15,11 @@ export const listFlowTypesHandler =
 						text: JSON.stringify(
 							result.map((flowType) => ({
 								id: flowType.id,
+								tenantId: flowType.tenantId,
+								dataCoreId: flowType.dataCoreId,
 								name: flowType.name,
+								description: flowType.description,
+								isDeleting: flowType.isDeleting,
 							})),
 						),
 					},

@@ -14,6 +14,9 @@ export const listTenantsHandler =
 							result.map((tenant) => ({
 								id: tenant.id,
 								name: tenant.name,
+								description: tenant.description,
+								websiteUrl: tenant.websiteUrl,
+								displayName: tenant.displayName,
 							})),
 						),
 					},

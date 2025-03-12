@@ -15,7 +15,14 @@ export const listEventTypesHandler =
 						text: JSON.stringify(
 							result.map((eventType) => ({
 								id: eventType.id,
+								tenantId: eventType.tenantId,
+								dataCoreId: eventType.dataCoreId,
+								flowTypeId: eventType.flowTypeId,
 								name: eventType.name,
+								description: eventType.description,
+								isTruncating: eventType.isTruncating,
+								isDeleting: eventType.isDeleting,
+								
 							})),
 						),
 					},

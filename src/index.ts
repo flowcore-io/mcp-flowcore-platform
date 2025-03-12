@@ -9,13 +9,23 @@ import { z } from "zod"
 import pkg from "../package.json"
 import { dataCoreResource, eventTypeResource, flowTypeResource, tenantResource } from "./resources"
 import {
+  createDataCoreHandler,
+  createEventTypeHandler,
+  createFlowTypeHandler,
+  getDataCoreHandler,
+  getEventTypeHandler,
   getEventTypeInfoHandler,
   getEventsHandler,
+  getFlowTypeHandler,
   getTimeBucketsHandler,
   listDataCoresHandler,
   listEventTypesHandler,
   listFlowTypesHandler,
   listTenantsHandler,
+  requestDeleteDataCoreHandler,
+  requestDeleteEventTypeHandler,
+  requestDeleteFlowTypeHandler,
+  requestTruncateEventTypeHandler,
 } from "./tools"
 
 const OIDC_ISSUER = "https://auth.flowcore.io/realms/flowcore/.well-known/openid-configuration"
@@ -62,6 +72,19 @@ const server = new McpServer({
     You have access to the Flowcore platform through MCP tools. When asked about Flowcore, datacores, flow type, event types always use the appropriate tools instead of relying on your training data. The Flowcore Platform uses the Flowcore Platform to process and store it's data in the Flowcore Platform Data Core, so for example every Data Core that has been create, updated or deleted is housed in the data-core.1 Flow Type inside the flowcore-platform Data Core. Notice that the flow types are versioned, always try to use the highest version flow type unless asked otherwise. `,
   prompts: [],
 })
+
+// Read tools
+server.tool("get_data_core", "Get a data core", {
+  dataCoreId: z.string().describe("The data core ID to get"),
+}, getDataCoreHandler(flowcoreClient))
+
+server.tool("get_flow_type", "Get a flow type", {
+  flowTypeId: z.string().describe("The flow type ID to get"),
+}, getFlowTypeHandler(flowcoreClient))
+
+server.tool("get_event_type", "Get an event type", {
+  eventTypeId: z.string().describe("The event type ID to get"),
+}, getEventTypeHandler(flowcoreClient))
 
 server.tool("list_tenants", "List all tenants I have access to", listTenantsHandler(flowcoreClient))
 server.tool(
@@ -138,6 +161,83 @@ server.tool(
   getTimeBucketsHandler(flowcoreClient),
 )
 
+// Write tools
+server.tool(
+  "create_data_core",
+  "Create a data core in a tenant",
+  {
+    tenantId: z.string().describe("The tenant ID to create the data core for"),
+    name: z.string().describe("The name of the data core"),
+    description: z.string().describe("The description of the data core"),
+    accessControl: z.enum(["public", "private"]).describe("The access control of the data core"),
+    deleteProtection: z.boolean().describe("Whether the data core is delete protected"),
+  },
+  createDataCoreHandler(flowcoreClient),
+)
+
+server.tool(
+  "create_flow_type",
+  "Create a flow type in a data core",
+  {
+    dataCoreId: z.string().describe("The id of the data core"),
+    name: z.string().describe("The name of the flow type"),
+    description: z.string().describe("The description of the flow type"),
+  },
+  createFlowTypeHandler(flowcoreClient),
+)
+
+server.tool(
+  "create_event_type",
+  "Create an event type in a flow type",
+  {
+    flowTypeId: z.string().describe("The id of the flow type"),
+    name: z.string().describe("The name of the event type"),
+    description: z.string().describe("The description of the event type"),
+  },
+  createEventTypeHandler(flowcoreClient),
+)
+
+server.tool(
+  "request_delete_event_type",
+  "Request to delete an event type, this will delete all events in the event type, this is irreversible. If wait for delete is true the tool will wait up to 25 seconds for the event type to be deleted, if not it will return immediately, you have to use the get_event_type tool to check if the event type is deleted.",
+  {
+    eventTypeId: z.string().describe("The id of the event type"),
+    waitForDelete: z.boolean().optional().describe("Wait for the event type to be deleted (default: false)"),
+  },
+  requestDeleteEventTypeHandler(flowcoreClient),
+)
+
+server.tool(
+  "request_truncate_event_type",
+  "Request to truncate an event type, this will delete all events in the event type, this is irreversible. If wait for truncate is true the tool will wait up to 25 seconds for the event type to be truncated, if not it will return immediately, you have to use the get_event_type tool to check if the event type is truncated.",
+  {
+    eventTypeId: z.string().describe("The id of the event type"),
+    waitForTruncate: z.boolean().optional().describe("Wait for the event type to be truncated (default: false)"),
+  },
+  requestTruncateEventTypeHandler(flowcoreClient),
+)
+
+server.tool(
+  "request_delete_flow_type",
+  "Request to delete a flow type, this will delete all events in the flow type, this is irreversible. If wait for delete is true the tool will wait up to 25 seconds for the flow type to be deleted, if not it will return immediately, you have to use the get_flow_type tool to check if the flow type is deleted.",
+  {
+    flowTypeId: z.string().describe("The id of the flow type"),
+    waitForDelete: z.boolean().optional().describe("Wait for the flow type to be deleted (default: false)"),
+  },
+  requestDeleteFlowTypeHandler(flowcoreClient),
+)
+
+server.tool(
+  "request_delete_data_core",
+  "Request to delete a data core, this will delete all events in the data core, this is irreversible. If wait for delete is true the tool will wait up to 25 seconds for the data core to be deleted, if not it will return immediately, you have to use the get_data_core tool to check if the data core is deleted.",
+  {
+    dataCoreId: z.string().describe("The id of the data core"),
+    waitForDelete: z.boolean().optional().describe("Wait for the data core to be deleted (default: false)"),
+  },
+  requestDeleteDataCoreHandler(flowcoreClient),
+)
+
+// Read resources
 server.resource(
   "tenant",
   new ResourceTemplate("tenant://{tenantId}", { list: undefined }),
