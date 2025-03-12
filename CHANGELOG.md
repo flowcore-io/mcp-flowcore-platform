@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.1](https://github.com/flowcore-io/mcp-flowcore-platform/compare/v1.5.0...v1.5.1) (2025-03-12)
+
+
+### Bug Fixes
+
+* **index:** :art: Update events type to array for consistency in ingestion ([804af9a](https://github.com/flowcore-io/mcp-flowcore-platform/commit/804af9ab09c10a7b5f3c54898d76e7831236986a))
+
 ## [1.5.0](https://github.com/flowcore-io/mcp-flowcore-platform/compare/v1.4.0...v1.5.0) (2025-03-12)
 
 
