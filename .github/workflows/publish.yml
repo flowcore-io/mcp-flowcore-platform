@@ -36,6 +36,7 @@ jobs:
         with:
           bun-version: latest
           registry-url: "https://registry.npmjs.org"
+          scope: "@flowcore"
       - name: Bun install
         run: |
           bun install --frozen-lockfile
