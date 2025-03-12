@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.0](https://github.com/flowcore-io/mcp-flowcore-platform/compare/v1.2.1...v1.3.0) (2025-03-12)
+
+
+### Features
+
+* **index:** :sparkles: Add new tools for data core, flow type, and event type management ([7f17118](https://github.com/flowcore-io/mcp-flowcore-platform/commit/7f17118ddb7cf216a2cadc5d55bd517f76ee58a6))
+* **prompts:** :sparkles: Add platform prompts for Flowcore Platform interaction and contract creation ([7d1abdd](https://github.com/flowcore-io/mcp-flowcore-platform/commit/7d1abdd7a6819814ec7f90dd92bcf11dd978a1ec))
+
 ## [1.2.1](https://github.com/flowcore-io/mcp-flowcore-platform/compare/v1.2.0...v1.2.1) (2025-03-12)
 
 
