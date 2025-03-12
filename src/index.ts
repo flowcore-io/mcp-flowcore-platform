@@ -1,10 +1,11 @@
+#!/usr/bin/env node
+
 import { FlowcoreClient } from "@flowcore/sdk"
 import { OidcClient } from "@flowcore/sdk-oidc-client"
 import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js"
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { parseArgs } from "node:util"
 import { z } from "zod"
-// Import package.json for version
 import pkg from "../package.json"
 import { dataCoreResource, eventTypeResource, flowTypeResource, tenantResource } from "./resources"
 import {
@@ -21,7 +22,8 @@ const OIDC_ISSUER = "https://auth.flowcore.io/realms/flowcore/.well-known/openid
 
 // Parse command line arguments
 const { values, positionals } = parseArgs({
-  args: Bun.argv,
+  // Use process.argv if Bun is not available
+  args: typeof Bun !== "undefined" ? Bun.argv : process.argv,
   options: {
     serviceAccountId: { type: "string" },
     serviceAccountKey: { type: "string" },
@@ -53,8 +55,7 @@ const flowcoreClient = new FlowcoreClient({
 const server = new McpServer({
   name: "Flowcore Platform",
   version: pkg.version,
-  description:
-    `## Flowcore Platform MCP Server
+  description: `## Flowcore Platform MCP Server
     An MCP server for managing and interacting with Flowcore Platform. For information on the details of the flowcore platform, you can check the Flowcore Platform Data Core, as it houses all actions that have happened in the platform. These actions are called events and are the main building blocks of the platform and housed within the data core inside the event type. The hirearchy of the platform is as follows: Users -> Tenant -> Data Core -> Flow Type -> Event Type -> Events. Tenants and organizations are the same thing in the platform, we are transitioning to use the term tenant. The events are stored in time buckets, and can be fetched by using the get_time_buckets tool. When you fetch events from a time bucket, you can use the cursor to paginate through the events. The default page size is 500 events per page, but you can change this by using the pageSize parameter. Also, the order of the events fetched from each time bucket is ascending by default, but you can change this by using the order parameter but keep in mind that when using desc, pagination and filters are not possible.
     
     ## When asking for information in the Flowcore Platform
