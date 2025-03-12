@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.2](https://github.com/flowcore-io/mcp-flowcore-platform/compare/v1.0.1...v1.0.2) (2025-03-12)
+
+
+### Bug Fixes
+
+* **ci:** :sparkles: Add registry URL for npm in publish workflow ([8262529](https://github.com/flowcore-io/mcp-flowcore-platform/commit/8262529c929858255b5386af7dff5dfaaf97f75b))
+* **ci:** :sparkles: Add scope for npm in publish workflow ([919b4d6](https://github.com/flowcore-io/mcp-flowcore-platform/commit/919b4d64bfc9d25890259a7d0ab0ae53627c250b))
+
 ## [1.0.1](https://github.com/flowcore-io/mcp-flowcore-platform/compare/v1.0.0...v1.0.1) (2025-03-12)
 
 
