@@ -4,6 +4,8 @@ import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mc
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { parseArgs } from "node:util"
 import { z } from "zod"
+// Import package.json for version
+import pkg from "../package.json"
 import { dataCoreResource, eventTypeResource, flowTypeResource, tenantResource } from "./resources"
 import {
   getEventTypeInfoHandler,
@@ -50,9 +52,9 @@ const flowcoreClient = new FlowcoreClient({
 // Create an MCP server
 const server = new McpServer({
   name: "Flowcore Platform",
-  version: "1.0.0",
+  version: pkg.version,
   description:
-    "An MCP server for managing and interacting with Flowcore Platform. For information on the details of the flowcore platform, you can check the Flowcore Platform Data Core, as it houses all actions that have happened in the platform. These actions are called events and are the main building blocks of the platform and housed within the data core inside the event type. The hirearchy of the platform is as follows: Users -> Tenant -> Data Core -> Flow Type -> Event Type -> Events. Tenants and organizations are the same thing in the platform, we are transitioning to use the term tenant. The events are stored in time buckets, and can be fetched by using the get_time_buckets tool.",
+    "An MCP server for managing and interacting with Flowcore Platform. For information on the details of the flowcore platform, you can check the Flowcore Platform Data Core, as it houses all actions that have happened in the platform. These actions are called events and are the main building blocks of the platform and housed within the data core inside the event type. The hirearchy of the platform is as follows: Users -> Tenant -> Data Core -> Flow Type -> Event Type -> Events. Tenants and organizations are the same thing in the platform, we are transitioning to use the term tenant. The events are stored in time buckets, and can be fetched by using the get_time_buckets tool. When you fetch events from a time bucket, you can use the cursor to paginate through the events. The default page size is 500 events per page, but you can change this by using the pageSize parameter. Also, the order of the events fetched from each time bucket is ascending by default, but you can change this by using the order parameter but keep in mind that when using desc, pagination and filters are not possible.",
 })
 
 server.tool("list_tenants", "List all tenants I have access to", listTenantsHandler(flowcoreClient))
@@ -101,7 +103,7 @@ server.tool(
         "The time bucket to get events from, the timebucket is in the format of YYYYMMDDhhiiss, normally the ii and ss are 0000",
       ),
     cursor: z.string().optional().describe("The paging cursor for pagination"),
-    pageSize: z.number().optional().describe("The number of events per page (default is 10,000)"),
+    pageSize: z.number().default(500).describe("The number of events per page (default is 500)"),
     fromEventId: z.string().optional().describe("Start from this event ID"),
     afterEventId: z
       .string()
@@ -122,7 +124,7 @@ server.tool(
   {
     eventTypeId: z.string().describe("Event type ID to get time buckets for"),
     fromTimeBucket: z.string().optional().describe("Start time bucket (YYYYMMDDhhiiss)"),
-    toTimeBucket: z.string().optional().describe("End time bucket (YYYYMMDDhhiiss)"), 
+    toTimeBucket: z.string().optional().describe("End time bucket (YYYYMMDDhhiiss)"),
     pageSize: z.number().optional().describe("Number of time buckets per page"),
     cursor: z.number().optional().describe("Pagination cursor"),
     order: z.enum(["asc", "desc"]).optional().describe("Sort order"),

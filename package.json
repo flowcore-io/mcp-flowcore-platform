@@ -14,7 +14,8 @@
     "README.md"
   ],
   "scripts": {
-    "build": "bun build ./src/index.ts --outdir ./dist --target node",
+    "build": "bun build ./src/index.ts --outdir ./dist --target node && bun run copy-files",
+    "copy-files": "bun run scripts/copy-files.ts",
     "prepublishOnly": "bun run build",
     "inspect": "bunx @modelcontextprotocol/inspector bun src/index.ts",
     "lint": "biome lint",
