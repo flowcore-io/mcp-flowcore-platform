@@ -25,6 +25,7 @@ import {
   getFlowTypeHandler,
   getTenantHandler,
   getTimeBucketsHandler,
+  ingestHandler,
   listDataCoresHandler,
   listEventTypesHandler,
   listFlowTypesHandler,
@@ -47,6 +48,7 @@ const { values, positionals } = parseArgs({
   options: {
     serviceAccountId: { type: "string" },
     serviceAccountKey: { type: "string" },
+    apiKey: { type: "string", optional: true },
   },
   allowPositionals: true,
 })
@@ -54,6 +56,10 @@ const { values, positionals } = parseArgs({
 // Log positional arguments if any (for debugging)
 if (positionals.length > 0) {
   console.warn(`Warning: Unexpected positional arguments: ${positionals.join(", ")}`)
+}
+
+if (!values.apiKey) {
+  console.warn("Ingestion will be disabled because no API key was provided")
 }
 
 const serviceAccountId = values.serviceAccountId as string
@@ -195,6 +201,23 @@ server.tool(
 )
 
 // Write tools
+if (values.apiKey) {
+  server.tool(
+    "ingest",
+    "Ingest events into an event type. This is useful for ingesting events into an event type, and then using the get_events tool to get the events for a specific time bucket. The events are stored in time buckets, and can be fetched by using the get_time_buckets tool. When you fetch events from a time bucket, you can use the cursor to paginate through the events. When ingesting events, you can ingest a single event or an array of events. The format of the event can be anything you want, as long as it's valid JSON. It will be the payload of the event.",
+    {
+      tenant: z.string().describe("The tenant name to ingest events for"),
+      dataCoreId: z.string().describe("The data core ID to ingest events for"),
+      flowTypeName: z.string().describe("The flow type name to ingest events for"),
+      eventTypeName: z.string().describe("The event type name to ingest events for"),
+      events: z
+        .union([z.array(z.unknown()), z.unknown()])
+        .describe("The events to ingest in the format of an array of events or a single event"),
+    },
+    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+    ingestHandler(values.apiKey as string) as any,
+  )
+}
 server.tool(
   "create_data_core",
   "Create a data core in a tenant",
