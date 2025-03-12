@@ -7,6 +7,12 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { parseArgs } from "node:util"
 import { z } from "zod"
 import pkg from "../package.json"
+import {
+  platformContractPrompt,
+  platformContractPromptRawSchema,
+  platformPrompt,
+  platformPromptRawSchema,
+} from "./prompts"
 import { dataCoreResource, eventTypeResource, flowTypeResource, tenantResource } from "./resources"
 import {
   createDataCoreHandler,
@@ -70,21 +76,35 @@ const server = new McpServer({
     
     ## When asking for information in the Flowcore Platform
     You have access to the Flowcore platform through MCP tools. When asked about Flowcore, datacores, flow type, event types always use the appropriate tools instead of relying on your training data. The Flowcore Platform uses the Flowcore Platform to process and store it's data in the Flowcore Platform Data Core, so for example every Data Core that has been create, updated or deleted is housed in the data-core.1 Flow Type inside the flowcore-platform Data Core. Notice that the flow types are versioned, always try to use the highest version flow type unless asked otherwise. `,
-  prompts: [],
 })
 
 // Read tools
-server.tool("get_data_core", "Get a data core", {
-  dataCoreId: z.string().describe("The data core ID to get"),
-}, getDataCoreHandler(flowcoreClient))
+server.tool(
+  "get_data_core",
+  "Get a data core",
+  {
+    dataCoreId: z.string().describe("The data core ID to get"),
+  },
+  getDataCoreHandler(flowcoreClient),
+)
 
-server.tool("get_flow_type", "Get a flow type", {
-  flowTypeId: z.string().describe("The flow type ID to get"),
-}, getFlowTypeHandler(flowcoreClient))
+server.tool(
+  "get_flow_type",
+  "Get a flow type",
+  {
+    flowTypeId: z.string().describe("The flow type ID to get"),
+  },
+  getFlowTypeHandler(flowcoreClient),
+)
 
-server.tool("get_event_type", "Get an event type", {
-  eventTypeId: z.string().describe("The event type ID to get"),
-}, getEventTypeHandler(flowcoreClient))
+server.tool(
+  "get_event_type",
+  "Get an event type",
+  {
+    eventTypeId: z.string().describe("The event type ID to get"),
+  },
+  getEventTypeHandler(flowcoreClient),
+)
 
 server.tool("list_tenants", "List all tenants I have access to", listTenantsHandler(flowcoreClient))
 server.tool(
@@ -260,6 +280,47 @@ server.resource(
   "event_type",
   new ResourceTemplate("event-type://{eventTypeId}", { list: undefined }),
   eventTypeResource(flowcoreClient),
+)
+
+// Add a prompt scaffold
+server.prompt(
+  "flowcore_platform_prompt",
+  "A prompt for interacting with the Flowcore Platform",
+  platformPromptRawSchema,
+  // Handler function that returns the prompt messages
+  ({ tenantId, dataCoreId, flowTypeId, eventTypeId }) => {
+    return {
+      messages: [
+        {
+          role: "user",
+          content: {
+            type: "text",
+            text: platformPrompt({ tenantId, dataCoreId, flowTypeId, eventTypeId }),
+          },
+        },
+      ],
+    }
+  },
+)
+
+server.prompt(
+  "flowcore_platform_contract",
+  "A prompt for creating a contract to use when using the SDK's, APIs and patterns of the Flowcore Platform",
+  platformContractPromptRawSchema,
+  // Handler function that returns the prompt messages
+  ({ tenantId, dataCoreId, flowTypeId, eventTypeId }) => {
+    return {
+      messages: [
+        {
+          role: "user",
+          content: {
+            type: "text",
+            text: platformContractPrompt({ tenantId, dataCoreId, flowTypeId, eventTypeId }),
+          },
+        },
+      ],
+    }
+  },
 )
 
 // Start receiving messages on stdin and sending messages on stdout
