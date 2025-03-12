@@ -23,6 +23,7 @@ import {
   getEventTypeInfoHandler,
   getEventsHandler,
   getFlowTypeHandler,
+  getTenantHandler,
   getTimeBucketsHandler,
   listDataCoresHandler,
   listEventTypesHandler,
@@ -32,6 +33,9 @@ import {
   requestDeleteEventTypeHandler,
   requestDeleteFlowTypeHandler,
   requestTruncateEventTypeHandler,
+  updateDataCoreHandler,
+  updateEventTypeHandler,
+  updateFlowTypeHandler,
 } from "./tools"
 
 const OIDC_ISSUER = "https://auth.flowcore.io/realms/flowcore/.well-known/openid-configuration"
@@ -79,6 +83,15 @@ const server = new McpServer({
 })
 
 // Read tools
+server.tool(
+  "get_tenant",
+  "Get a tenant",
+  {
+    tenantId: z.string().describe("The tenant ID to get"),
+  },
+  getTenantHandler(flowcoreClient),
+)
+
 server.tool(
   "get_data_core",
   "Get a data core",
@@ -193,6 +206,38 @@ server.tool(
     deleteProtection: z.boolean().describe("Whether the data core is delete protected"),
   },
   createDataCoreHandler(flowcoreClient),
+)
+
+server.tool(
+  "update_data_core",
+  "Update a data core",
+  {
+    dataCoreId: z.string().describe("The id of the data core"),
+    description: z.string().optional().describe("The description of the data core"),
+    accessControl: z.enum(["public", "private"]).optional().describe("The access control of the data core"),
+    deleteProtection: z.boolean().optional().describe("Whether the data core is delete protected"),
+  },
+  updateDataCoreHandler(flowcoreClient),
+)
+
+server.tool(
+  "update_flow_type",
+  "Update a flow type",
+  {
+    flowTypeId: z.string().describe("The id of the flow type"),
+    description: z.string().optional().describe("The description of the flow type"),
+  },
+  updateFlowTypeHandler(flowcoreClient),
+)
+
+server.tool(
+  "update_event_type",
+  "Update an event type",
+  {
+    eventTypeId: z.string().describe("The id of the event type"),
+    description: z.string().optional().describe("The description of the event type"),
+  },
+  updateEventTypeHandler(flowcoreClient),
 )
 
 server.tool(
