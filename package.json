@@ -6,14 +6,15 @@
   "type": "module",
   "main": "dist/index.js",
   "bin": {
-    "platform-mcp-server": "./dist/cli.js"
+    "platform-mcp-server": "./dist/index.js"
   },
   "files": [
     "dist",
+    "package.json",
     "README.md"
   ],
   "scripts": {
-    "build": "bun build ./src/cli.ts --outdir ./dist --target node",
+    "build": "bun build ./src/index.ts --outdir ./dist --target node",
     "prepublishOnly": "bun run build",
     "inspect": "bunx @modelcontextprotocol/inspector bun src/index.ts",
     "lint": "biome lint",
