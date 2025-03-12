@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/flowcore-io/mcp-flowcore-platform/compare/v1.2.0...v1.2.1) (2025-03-12)
+
+
+### Bug Fixes
+
+* **index:** :memo: Add prompts array to server configuration ([2124a37](https://github.com/flowcore-io/mcp-flowcore-platform/commit/2124a3792b2da0a062c99cf91cee50c73a1b4213))
+
 ## [1.2.0](https://github.com/flowcore-io/mcp-flowcore-platform/compare/v1.1.1...v1.2.0) (2025-03-12)
 
 
