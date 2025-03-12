@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/flowcore-io/mcp-flowcore-platform/compare/v1.0.2...v1.0.3) (2025-03-12)
+
+
+### Bug Fixes
+
+* **ci:** :sparkles: Enhance npm publish workflow with auth token and version logging ([5c3b423](https://github.com/flowcore-io/mcp-flowcore-platform/commit/5c3b423576289be8aef0d90ef98bf65c4f91989e))
+
 ## [1.0.2](https://github.com/flowcore-io/mcp-flowcore-platform/compare/v1.0.1...v1.0.2) (2025-03-12)
 
 
