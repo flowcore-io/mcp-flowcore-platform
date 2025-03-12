@@ -1,0 +1,25 @@
+name: Test
+
+on:
+  push:
+    branches-ignore: ["main"]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.FLOWCORE_MACHINE_GITHUB_TOKEN }}
+          submodules: true
+      - name: Setup Bun environment
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Bun install
+        run: |
+          bun install --frozen-lockfile
+      - name: Lint
+        run: bun lint
+      - name: Build
+        run: bun build

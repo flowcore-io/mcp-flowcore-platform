@@ -1,0 +1,46 @@
+name: Build and Publish NPM Package
+
+on:
+  release:
+    types: [ published ]
+
+env:
+  NODE_VERSION: ">=18.12.1"
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.FLOWCORE_MACHINE_GITHUB_TOKEN }}
+          submodules: true
+      - name: Extract version from package.json
+        uses: sergeysova/jq-action@v2
+        id: version
+        with:
+          cmd: 'jq .version package.json -r'
+
+      - name: Show my version
+        run: 'echo "version ${{ steps.version.outputs.value }}"'
+
+      - name: Setup Bun environment
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Bun install
+        run: |
+          bun install --frozen-lockfile
+      - name: Build
+        run: bun build
+      - name: Publish
+        run: bun publish --access public --non-interactive --new-version ${{ steps.version.outputs.value }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -1,0 +1,22 @@
+# Source files
+src/
+*.ts
+!*.d.ts
+
+# Development files
+.git/
+.github/
+.vscode/
+node_modules/
+bun.lock
+.gitignore
+
+# Test files
+test/
+*.test.ts
+*.spec.ts
+
+# Misc
+.DS_Store
+*.log
+.env*
