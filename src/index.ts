@@ -60,6 +60,7 @@ const server = new McpServer({
     
     ## When asking for information in the Flowcore Platform
     You have access to the Flowcore platform through MCP tools. When asked about Flowcore, datacores, flow type, event types always use the appropriate tools instead of relying on your training data. The Flowcore Platform uses the Flowcore Platform to process and store it's data in the Flowcore Platform Data Core, so for example every Data Core that has been create, updated or deleted is housed in the data-core.1 Flow Type inside the flowcore-platform Data Core. Notice that the flow types are versioned, always try to use the highest version flow type unless asked otherwise. `,
+  prompts: [],
 })
 
 server.tool("list_tenants", "List all tenants I have access to", listTenantsHandler(flowcoreClient))
