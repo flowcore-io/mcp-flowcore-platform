@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/flowcore-io/mcp-flowcore-platform/compare/v1.1.1...v1.2.0) (2025-03-12)
+
+
+### Features
+
+* **build:** :sparkles: Add shebang line to build process and create add-shebang script ([9203216](https://github.com/flowcore-io/mcp-flowcore-platform/commit/92032166cacac335fb6bb05099a93b93115a25f5))
+
 ## [1.1.1](https://github.com/flowcore-io/mcp-flowcore-platform/compare/v1.1.0...v1.1.1) (2025-03-12)
 
 
