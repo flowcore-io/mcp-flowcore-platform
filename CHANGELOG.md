@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.0](https://github.com/flowcore-io/mcp-flowcore-platform/compare/v1.0.3...v1.1.0) (2025-03-12)
+
+
+### Features
+
+* **build:** :sparkles: Add file copying to build process ([3dd3399](https://github.com/flowcore-io/mcp-flowcore-platform/commit/3dd3399a90fef7e0e1076385a8def5052ee7d133))
+
+
+### Bug Fixes
+
+* **package:** :art: Update entry point and restructure CLI implementation ([4b5533c](https://github.com/flowcore-io/mcp-flowcore-platform/commit/4b5533c3cc42ded5c22d23bb4b1ec414ce606820))
+
 ## [1.0.3](https://github.com/flowcore-io/mcp-flowcore-platform/compare/v1.0.2...v1.0.3) (2025-03-12)
 
 
