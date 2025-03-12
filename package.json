@@ -15,11 +15,14 @@
   "scripts": {
     "build": "bun build ./src/cli.ts --outdir ./dist --target node",
     "prepublishOnly": "bun run build",
-    "inspect": "bunx @modelcontextprotocol/inspector bun src/index.ts"
+    "inspect": "bunx @modelcontextprotocol/inspector bun src/index.ts",
+    "lint": "biome lint",
+    "format": "biome format"
   },
   "devDependencies": {
     "@types/bun": "latest",
-    "typescript": "^5"
+    "typescript": "^5",
+    "@biomejs/biome": "^1.9.4"
   },
   "peerDependencies": {
     "typescript": "^5"
