@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/flowcore-io/mcp-flowcore-platform/compare/v1.4.0...v1.5.0) (2025-03-12)
+
+
+### Features
+
+* **index:** :sparkles: Add ingest tool for event ingestion with API key support ([bbec794](https://github.com/flowcore-io/mcp-flowcore-platform/commit/bbec7948847f93f2081b457755c0af32584686d4))
+
 ## [1.4.0](https://github.com/flowcore-io/mcp-flowcore-platform/compare/v1.3.0...v1.4.0) (2025-03-12)
 
 
