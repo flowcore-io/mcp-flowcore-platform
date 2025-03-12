@@ -39,7 +39,7 @@ jobs:
         run: |
           bun install --frozen-lockfile
       - name: Build
-        run: bun build
+        run: bun run build
       - name: Publish
         run: bun publish --access public --non-interactive --new-version ${{ steps.version.outputs.value }}
         env:
