@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/flowcore-io/mcp-flowcore-platform/compare/v1.3.0...v1.4.0) (2025-03-12)
+
+
+### Features
+
+* **index:** :sparkles: Add handlers for tenant retrieval and updates for data core, flow type, and event type ([50053ad](https://github.com/flowcore-io/mcp-flowcore-platform/commit/50053ad4075ae36465b79d25d69b3b4201b20c94))
+
 ## [1.3.0](https://github.com/flowcore-io/mcp-flowcore-platform/compare/v1.2.1...v1.3.0) (2025-03-12)
 
 
