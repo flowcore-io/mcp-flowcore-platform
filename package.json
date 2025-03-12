@@ -1,6 +1,6 @@
 {
   "name": "@flowcore/platform-mcp-server",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "MCP server for managing and interacting with Flowcore Platform",
   "private": false,
   "type": "module",
