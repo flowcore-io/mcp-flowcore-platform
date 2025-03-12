@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/flowcore-io/mcp-flowcore-platform/compare/v1.1.0...v1.1.1) (2025-03-12)
+
+
+### Bug Fixes
+
+* **index:** :memo: Update server description and add information on Flowcore Platform usage ([096f7ce](https://github.com/flowcore-io/mcp-flowcore-platform/commit/096f7cea626a53087bb8d10c830d36d3891f0e67))
+
 ## [1.1.0](https://github.com/flowcore-io/mcp-flowcore-platform/compare/v1.0.3...v1.1.0) (2025-03-12)
 
 
