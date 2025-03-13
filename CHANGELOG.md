@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.2](https://github.com/flowcore-io/mcp-flowcore-platform/compare/v1.5.1...v1.5.2) (2025-03-13)
+
+
+### Bug Fixes
+
+* **index:** :memo: Update documentation for get_events tool with additional pagination and filtering details ([ece6df3](https://github.com/flowcore-io/mcp-flowcore-platform/commit/ece6df36285ac3fd1751d77313889a646d371ccc))
+
 ## [1.5.1](https://github.com/flowcore-io/mcp-flowcore-platform/compare/v1.5.0...v1.5.1) (2025-03-12)
 
 
