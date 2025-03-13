@@ -162,7 +162,7 @@ server.tool(
 
 server.tool(
   "get_events",
-  "Get events for an event type, this can be paginated by using the cursor returned from the previous call. This is good for getting the payload of the events to inspect them.",
+  "Get events for an event type, this can be paginated by using the cursor returned from the previous call. This is good for getting the payload of the events to inspect them. You can pageinate by using the cursor returned from the previous call. You can also filter by event id, time bucket, from event id, to event id, order, and page size. The order is ascending by default, and the page size is 500 by default. The cursor returned can be called nextCursor, it is a stringified object or a string, you need to pass it as is to paginate.",
   {
     eventTypeId: z.string().describe("The event type ID to get events for"),
     timeBucket: z
@@ -170,7 +170,7 @@ server.tool(
       .describe(
         "The time bucket to get events from, the timebucket is in the format of YYYYMMDDhhiiss, normally the ii and ss are 0000",
       ),
-    cursor: z.string().optional().describe("The paging cursor for pagination"),
+    cursor: z.string().optional().describe("The paging cursor for pagination, this will be the nextCursor returned from the previous call"),
     pageSize: z.number().default(500).describe("The number of events per page (default is 500)"),
     fromEventId: z.string().optional().describe("Start from this event ID"),
     afterEventId: z
