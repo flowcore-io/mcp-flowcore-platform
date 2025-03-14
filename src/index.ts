@@ -170,8 +170,11 @@ server.tool(
       .describe(
         "The time bucket to get events from, the timebucket is in the format of YYYYMMDDhhiiss, normally the ii and ss are 0000",
       ),
-    cursor: z.string().optional().describe("The paging cursor for pagination, this will be the nextCursor returned from the previous call"),
-    pageSize: z.number().default(500).describe("The number of events per page (default is 500)"),
+    cursor: z
+      .string()
+      .optional()
+      .describe("The paging cursor for pagination, this will be the nextCursor returned from the previous call"),
+    pageSize: z.number().default(10).describe("The number of events per page (default is 10) (max is 100)"),
     fromEventId: z.string().optional().describe("Start from this event ID"),
     afterEventId: z
       .string()
@@ -210,9 +213,7 @@ if (values.apiKey) {
       dataCoreId: z.string().describe("The data core ID to ingest events for"),
       flowTypeName: z.string().describe("The flow type name to ingest events for"),
       eventTypeName: z.string().describe("The event type name to ingest events for"),
-      events: z
-        .array(z.any())
-        .describe("The events to ingest in the format of an array of events in JSON format"),
+      events: z.array(z.any()).describe("The events to ingest in the format of an array of events in JSON format"),
     },
     // biome-ignore lint/suspicious/noExplicitAny: <explanation>
     ingestHandler(values.apiKey as string) as any,
