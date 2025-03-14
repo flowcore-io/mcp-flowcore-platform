@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.3](https://github.com/flowcore-io/mcp-flowcore-platform/compare/v1.5.2...v1.5.3) (2025-03-14)
+
+
+### Bug Fixes
+
+* **index:** :bug: Adjust default pageSize to 10 and improve cursor handling in event ingestion ([a54dda8](https://github.com/flowcore-io/mcp-flowcore-platform/commit/a54dda81e55580f3e0464c700c69e9512c80f8a2))
+
 ## [1.5.2](https://github.com/flowcore-io/mcp-flowcore-platform/compare/v1.5.1...v1.5.2) (2025-03-13)
 
 
