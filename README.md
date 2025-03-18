@@ -7,10 +7,10 @@ A Model Context Protocol (MCP) server for managing and interacting with the Flow
 You can run this package directly using npx without installing it:
 
 ```bash
-npx @flowcore/platform-mcp-server --serviceAccountId <accountid> --serviceAccountKey <key>
+npx @flowcore/platform-mcp-server --username <username> --pat <pat>
 ```
 
-Replace `<accountid>` and `<key>` with your Flowcore service account credentials.
+Replace `<username>` and `<pat>` with your Flowcore username and PAT (Personal Access Token).
 
 ## Installation
 
@@ -23,7 +23,7 @@ npm install -g @flowcore/platform-mcp-server
 Then run it:
 
 ```bash
-platform-mcp-server --serviceAccountId <accountid> --serviceAccountKey <key>
+platform-mcp-server --username <username> --pat <pat>
 ```
 
 ## Development
@@ -37,7 +37,7 @@ bun install
 Run the project directly with Bun:
 
 ```bash
-bun run src/index.ts --serviceAccountId <accountid> --serviceAccountKey <key>
+bun run src/index.ts --username <username> --pat <pat>
 ```
 
 ## Building
@@ -51,15 +51,15 @@ bun run build
 Run the built project:
 
 ```bash
-node dist/cli.js --serviceAccountId <accountid> --serviceAccountKey <key>
+node dist/cli.js --username <username> --pat <pat>
 ```
 
 ## Environment Variables
 
 | Variable | Type | Description | Default | Required |
 |----------|------|-------------|---------|----------|
-| SERVICE_ACCOUNT_ID | string | Flowcore service account ID | - | ✓ |
-| SERVICE_ACCOUNT_KEY | string | Flowcore service account key | - | ✓ |
+| USERNAME | string | Flowcore username | - | ✓ |
+| PAT | string | Flowcore PAT (Personal Access Token) | - | ✓ |
 
 ## About
 
