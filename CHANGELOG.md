@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.0](https://github.com/flowcore-io/mcp-flowcore-platform/compare/v1.5.3...v1.6.0) (2025-03-18)
+
+
+### Features
+
+* **index:** :sparkles: Add support for PAT exchange and update service account handling ([43aa0c5](https://github.com/flowcore-io/mcp-flowcore-platform/commit/43aa0c5bf168885759ac531a544112aa9449d1a9))
+
 ## [1.5.3](https://github.com/flowcore-io/mcp-flowcore-platform/compare/v1.5.2...v1.5.3) (2025-03-14)
 
 
