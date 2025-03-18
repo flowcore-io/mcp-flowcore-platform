@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.1](https://github.com/flowcore-io/mcp-flowcore-platform/compare/v1.6.0...v1.6.1) (2025-03-18)
+
+
+### Bug Fixes
+
+* **index:** :memo: Update ingest tool documentation to specify max events per request ([cf141bc](https://github.com/flowcore-io/mcp-flowcore-platform/commit/cf141bc88f25ee7bf07c92afa04f13d701c0a096))
+
 ## [1.6.0](https://github.com/flowcore-io/mcp-flowcore-platform/compare/v1.5.3...v1.6.0) (2025-03-18)
 
 
