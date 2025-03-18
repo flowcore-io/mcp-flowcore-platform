@@ -38,6 +38,7 @@ import {
   updateEventTypeHandler,
   updateFlowTypeHandler,
 } from "./tools"
+import { exchangePat } from "./utils/pat-exchange"
 
 const OIDC_ISSUER = "https://auth.flowcore.io/realms/flowcore/.well-known/openid-configuration"
 
@@ -46,8 +47,10 @@ const { values, positionals } = parseArgs({
   // Use process.argv if Bun is not available
   args: typeof Bun !== "undefined" ? Bun.argv : process.argv,
   options: {
-    serviceAccountId: { type: "string" },
-    serviceAccountKey: { type: "string" },
+    serviceAccountId: { type: "string", optional: true },
+    serviceAccountKey: { type: "string", optional: true },
+    username: { type: "string", optional: true },
+    pat: { type: "string", optional: true },
     apiKey: { type: "string", optional: true },
   },
   allowPositionals: true,
@@ -64,18 +67,27 @@ if (!values.apiKey) {
 
 const serviceAccountId = values.serviceAccountId as string
 const serviceAccountKey = values.serviceAccountKey as string
+const username = values.username as string
+const pat = values.pat as string
 
-if (!serviceAccountId || !serviceAccountKey) {
-  throw new Error("No service account credentials provided")
+if (!serviceAccountId && !pat) {
+  throw new Error("No service account credentials or PAT provided")
 }
 
-const oidcClient = new OidcClient(serviceAccountId, serviceAccountKey, OIDC_ISSUER)
-const flowcoreClient = new FlowcoreClient({
-  getBearerToken: async () => {
-    const token = await oidcClient.getToken()
-    return token.accessToken
-  },
-})
+let flowcoreClient!: FlowcoreClient
+if (pat && username) {
+  flowcoreClient = new FlowcoreClient({
+    getBearerToken: async () => exchangePat(username, pat),
+  })
+} else if (serviceAccountId && serviceAccountKey) {
+  const oidcClient = new OidcClient(serviceAccountId, serviceAccountKey, OIDC_ISSUER)
+  flowcoreClient = new FlowcoreClient({
+    getBearerToken: async () => {
+      const token = await oidcClient.getToken()
+      return token.accessToken
+    },
+  })
+}
 
 // Create an MCP server
 const server = new McpServer({

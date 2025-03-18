@@ -4,13 +4,14 @@
     "": {
       "name": "mcp-flowcore-platform",
       "dependencies": {
-        "@biomejs/biome": "^1.9.4",
-        "@flowcore/sdk": "^1.17.0",
+        "@flowcore/sdk": "^1.19.1",
         "@flowcore/sdk-oidc-client": "^1.3.1",
         "@modelcontextprotocol/sdk": "^1.7.0",
+        "jwt-decode": "^4.0.0",
         "zod": "^3.24.2",
       },
       "devDependencies": {
+        "@biomejs/biome": "^1.9.4",
         "@types/bun": "latest",
         "typescript": "^5",
       },
@@ -42,7 +43,7 @@
 
     "@deno/shim-deno-test": ["@deno/shim-deno-test@0.5.0", "", {}, "sha512-4nMhecpGlPi0cSzT67L+Tm+GOJqvuk8gqHBziqcUQOarnuIax1z96/gJHCSIz2Z0zhxE6Rzwb3IZXPtFh51j+w=="],
 
-    "@flowcore/sdk": ["@flowcore/sdk@1.17.0", "", { "dependencies": { "@deno/shim-deno": "~0.18.0", "@sinclair/typebox": "0.32.15", "rxjs": "^7.8.1", "ws": "^8.13.0" } }, "sha512-/rNOq8F4BqTwCuXbdlM7zzxhS85vQPg5Mo9+bYdNI2Tb9S1DV+dIp4zw3rMqkaGhfbLvkD7rTS7oqvR3fApudA=="],
+    "@flowcore/sdk": ["@flowcore/sdk@1.19.1", "", { "dependencies": { "@deno/shim-deno": "~0.18.0", "@sinclair/typebox": "0.32.15", "rxjs": "^7.8.1", "ws": "^8.13.0" } }, "sha512-o6vxQWo5gg1JU01u5sJPMyWNuotWoinjrpCi3A203xbV7Bn74cC6lOJlglZ26nRW2CHNeDV/FDBcTYNXP5VKUw=="],
 
     "@flowcore/sdk-oidc-client": ["@flowcore/sdk-oidc-client@1.3.1", "", {}, "sha512-fUHOmKDQYMqMDlh/KucJiDZ9he12QUkQ2KOJKCVy6GD7qsJs9qiJ8jV9th1Xeuz9kAca4TRXt+spMUhZ4CfUDw=="],
 
@@ -137,6 +138,8 @@
     "is-promise": ["is-promise@4.0.0", "", {}, "sha512-hvpoI6korhJMnej285dSg6nu1+e6uxs7zG3BYAm5byqDsgJNWwxzM6z6iZiAgQR4TJ30JmBTOwqZUw3WlyH3AQ=="],
 
     "isexe": ["isexe@3.1.1", "", {}, "sha512-LpB/54B+/2J5hqQ7imZHfdU31OlgQqx7ZicVlkm9kzg9/w8GKLEcFfJl/t7DCEDueOyBAD6zCCwTO6Fzs0NoEQ=="],
+
+    "jwt-decode": ["jwt-decode@4.0.0", "", {}, "sha512-+KJGIyHgkGuIq3IEBNftfhW/LfWhXUIY6OmyVWjliu5KH1y0fw7VQ8YndE2O4qZdMSd9SqbnC8GOcZEy0Om7sA=="],
 
     "math-intrinsics": ["math-intrinsics@1.1.0", "", {}, "sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g=="],
 
