@@ -1,20 +1,29 @@
+import { TenantFetchCommand, type FlowcoreClient } from "@flowcore/sdk"
+
 export type IngestInput = {
   tenant: string
   dataCoreId: string
   flowTypeName: string
   eventTypeName: string
-  events: unknown[]
+  events: string
 }
 
-export const ingestHandler = (apiKey: string) => async ({
+export const ingestHandler = (apiKey: string, flowcoreClient: FlowcoreClient) => async ({
   tenant,
   dataCoreId,
   flowTypeName,
   eventTypeName,
   events,
 }: IngestInput) => {
+
   try {
-    const webhookUrl = `https://webhook.api.flowcore.io/events/${tenant}/${dataCoreId}/${flowTypeName}/${eventTypeName}`
+    const tenantConfig = await flowcoreClient.execute(new TenantFetchCommand({ tenant }))
+
+    const ingestionBaseUrl = tenantConfig.isDedicated && tenantConfig.dedicated?.configuration.domain
+      ? `https://webhook.${tenantConfig.dedicated?.configuration.domain}`
+      : "https://webhook.api.flowcore.io"
+
+    const webhookUrl = `${ingestionBaseUrl}/events/${tenant}/${dataCoreId}/${flowTypeName}/${eventTypeName}`
 
     // Execute the command manually since it's a custom command
     const response = await fetch(webhookUrl, {
@@ -23,7 +32,7 @@ export const ingestHandler = (apiKey: string) => async ({
         "Content-Type": "application/json",
         Authorization: `${apiKey}`,
       },
-      body: JSON.stringify(events),
+      body: events,
     })
 
     if (!response.ok) {
