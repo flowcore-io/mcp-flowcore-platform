@@ -66,3 +66,4 @@ node dist/cli.js --username <username> --pat <pat>
 This project uses the Model Context Protocol (MCP) to provide a standardized interface for interacting with the Flowcore Platform. It allows AI assistants to query and manage Flowcore resources through a structured API.
 
 Originally created using `bun init` in bun v1.2.3. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+
