@@ -2,6 +2,10 @@
 
 A Model Context Protocol (MCP) server for managing and interacting with the Flowcore Platform.
 
+If you're curious about how it works, you can [check out our video](https://www.youtube.com/watch?v=Wh4h_n7IlTw), where we set it up and demonstrate what it can do.
+
+> If you like this solution, but would like to reduce the hallucinations, reduce token usage, increase the amount of data you can look through and also speed up querying exponentially - then we recommend you also [check out our local read model mcp server](https://github.com/flowcore-io/mcp-flowcore-local-readmodel),
+
 ## Usage with npx
 
 You can run this package directly using npx without installing it:
@@ -67,3 +71,5 @@ This project uses the Model Context Protocol (MCP) to provide a standardized int
 
 Originally created using `bun init` in bun v1.2.3. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
 
+## Questions
+if you have any questions or cool ideas, then feel free to [join our Discord community](https://discord.gg/4fmSaR4wFR). Otherwise you can find us on all major social platforms
