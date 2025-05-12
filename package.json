@@ -31,7 +31,7 @@
     "typescript": "^5"
   },
   "dependencies": {
-    "@flowcore/sdk": "^1.24.4",
+    "@flowcore/sdk": "^1.47.1",
     "@flowcore/sdk-oidc-client": "^1.3.1",
     "@modelcontextprotocol/sdk": "^1.8.0",
     "jwt-decode": "^4.0.0",
