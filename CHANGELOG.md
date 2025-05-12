@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.1](https://github.com/flowcore-io/mcp-flowcore-platform/compare/v1.7.0...v1.7.1) (2025-05-12)
+
+
+### Bug Fixes
+
+* **sensitive-data:** :security: Update sensitive data handling instructions in event type info and events retrieval ([fd4ce3f](https://github.com/flowcore-io/mcp-flowcore-platform/commit/fd4ce3f8bd371dd59a6edfd91202ab105c16cf2a))
+
 ## [1.7.0](https://github.com/flowcore-io/mcp-flowcore-platform/compare/v1.6.2...v1.7.0) (2025-05-12)
 
 
