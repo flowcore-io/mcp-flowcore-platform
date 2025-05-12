@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.2](https://github.com/flowcore-io/mcp-flowcore-platform/compare/v1.6.1...v1.6.2) (2025-04-03)
+
+
+### Bug Fixes
+
+* **README:** :rocket: force release ([fa519fd](https://github.com/flowcore-io/mcp-flowcore-platform/commit/fa519fd90fca91caf5f453ed829e4a8ff574a7b4))
+
 ## [1.6.1](https://github.com/flowcore-io/mcp-flowcore-platform/compare/v1.6.0...v1.6.1) (2025-03-18)
 
 
