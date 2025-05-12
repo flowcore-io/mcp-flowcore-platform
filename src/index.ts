@@ -165,7 +165,7 @@ server.tool(
 
 server.tool(
   "get_event_type_info",
-  "Get event information about an event type, like first and last time bucket and 5 example events. Sensitive data should not be needed as it is masked in a correct format in the response, but if you need it ask the user if they are sure they want to include sensitive data, is false by default",
+  "Get event information about an event type, like first and last time bucket and 5 example events. Sensitive data should not be needed as it is masked in a correct format in the response, but if you need it ask the user if they are sure they want to include sensitive data, is **false** by default. **DO NOT** fetch sensitive data from the event type on your own initiative, if you deem it necessary to fetch sensitive data, **ALWAYS** ask the user if they are sure they want to include sensitive data, is **false** by default",
   {
     eventTypeId: z.string().describe("The event type ID to get information for"),
     tenant: z.string().describe("The tenant name to get event type info for"),
@@ -173,7 +173,7 @@ server.tool(
       .boolean()
       .optional()
       .describe(
-        "Whether to include sensitive data in the response, CAUTION: This will return sensitive data from the event type, so use with caution, ask the user if they are sure they want to include sensitive data, is false by default",
+        "Whether to include sensitive data in the response, **CAUTION**: This will return sensitive data from the event type, so use with caution, ask the user if they are sure they want to include sensitive data, is *false* by default",
       ),
   },
   getEventTypeInfoHandler(flowcoreClient),
@@ -181,7 +181,7 @@ server.tool(
 
 server.tool(
   "get_events",
-  "Get events for an event type, this can be paginated by using the cursor returned from the previous call. This is good for getting the payload of the events to inspect them. You can pageinate by using the cursor returned from the previous call. You can also filter by event id, time bucket, from event id, to event id, order, and page size. The order is ascending by default, and the page size is 500 by default. The cursor returned can be called nextCursor, it is a stringified object or a string, you need to pass it as is to paginate. Sensitive data should not be needed as it is masked in a correct format in the response, but if you need it ask the user if they are sure they want to include sensitive data, is false by default",
+  "Get events for an event type, this can be paginated by using the cursor returned from the previous call. This is good for getting the payload of the events to inspect them. You can pageinate by using the cursor returned from the previous call. You can also filter by event id, time bucket, from event id, to event id, order, and page size. The order is ascending by default, and the page size is 500 by default. The cursor returned can be called nextCursor, it is a stringified object or a string, you need to pass it as is to paginate. Sensitive data should not be needed as it is masked in a correct format in the response, but if you need it ask the user if they are sure they want to include sensitive data, is **false** by default. **DO NOT** fetch sensitive data from the event type on your own initiative, if you deem it necessary to fetch sensitive data, **ALWAYS** ask the user if they are sure they want to include sensitive data, is **false** by default",
   {
     tenant: z.string().describe("The tenant name to get events for"),
     eventTypeId: z.string().describe("The event type ID to get events for"),
