@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.0](https://github.com/flowcore-io/mcp-flowcore-platform/compare/v1.6.2...v1.7.0) (2025-05-12)
+
+
+### Features
+
+* bumbed flowcore sdk to latest version and added sensitive data support ([f3ccf67](https://github.com/flowcore-io/mcp-flowcore-platform/commit/f3ccf6780d79e2c8e68f661e12439dcd0817b0a0))
+
 ## [1.6.2](https://github.com/flowcore-io/mcp-flowcore-platform/compare/v1.6.1...v1.6.2) (2025-04-03)
 
 
