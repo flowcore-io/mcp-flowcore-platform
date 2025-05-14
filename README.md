@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/flowcore-io-mcp-flowcore-platform-badge.png)](https://mseep.ai/app/flowcore-io-mcp-flowcore-platform)
+
 # Flowcore Platform MCP Server
 
 A Model Context Protocol (MCP) server for managing and interacting with the Flowcore Platform.
